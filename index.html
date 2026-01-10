@@ -1,23 +1,524 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+    <!-- JSON-LD Structured Data for Service/Product -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "부모님암보험 가입 및 비교",
+      "provider": {
+        "@type": "Organization",
+        "name": "부모님암보험 비교센터",
+        "url": "https://yourdomain.com",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+82-10-1234-5678",
+          "contactType": "고객 상담 서비스"
+        }
+      },
+      "areaServed": {
+        "@type": "State",
+        "name": "대한민국"
+      },
+      "description": "부모님을 위한 맞춤형 암보험 상품 추천 및 비교 분석 서비스",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "부모님암보험 상품 비교",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "비갱신형 부모님암보험"
+            },
+            "description": "보험료 변동 없이 장기간 보장, 60대 이상 부모님에게 유리"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "고령자 유병자 암보험"
+            },
+            "description": "기존 질환이 있어도 간편 심사로 가입 가능한 상품"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "갱신형 부모님암보험"
+            },
+            "description": "초기 보험료가 저렴하여 단기 보장이나 예산이 한정적인 경우 적합"
+          }
+        ]
+      }
+    }
+    </script>
+
+    <!-- Google Fonts Import for Noto Sans KR -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+    <style>
+      /* --- Global Style Reset --- */
+      body {
+        font-family: "Noto Sans KR", sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.8; /* Adjusted line height for readability */
+        background-color: #f8fcfb; /* Soft light background */
+        color: #333;
+      }
+      a {
+        text-decoration: none;
+        color: #007bff; /* Soft blue links */
+        transition: color 0.3s ease;
+      }
+      a:hover {
+        color: #0056b3;
+      }
+      /* --- Header and Navigation --- */
+      header {
+        background-color: #e3f2fd; /* Light blue header */
+        color: #004080;
+        padding: 1.5rem 1rem;
+        text-align: center;
+        border-bottom: 2px solid #b3e5fc;
+      }
+      nav ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 0.5rem;
+      }
+      nav a {
+        color: #004080;
+        font-weight: 600;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+      }
+      nav a:hover {
+        background-color: #bbdefb; /* Light hover effect */
+        color: #004080;
+      }
+      /* --- Main Content Layout --- */
+      main {
+        max-width: 1000px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+        background-color: white;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        border-radius: 12px;
+      }
+      h1 {
+        color: #004080;
+        font-weight: 700;
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+      }
+      h2 {
+        color: #004080;
+        font-weight: 600;
+        font-size: 1.8rem;
+        margin-top: 2.5rem;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 0.5rem;
+      }
+      h3 {
+        color: #0056b3;
+        font-weight: 600;
+        font-size: 1.4rem;
+        margin-top: 2rem;
+      }
+      p {
+        margin-bottom: 1.5rem;
+      }
+      /* --- Keyword Tags --- */
+      .keyword-tags {
+        margin: 1.5rem 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .keyword-tags a {
+        background-color: #e0f0ff;
+        color: #0056b3;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+      .keyword-tags a:hover {
+        background-color: #b3d1ff;
+        color: #004080;
+      }
+      /* --- Tables and Lists --- */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+      th, td {
+        padding: 1rem;
+        border: 1px solid #ddd;
+        text-align: left;
+      }
+      th {
+        background-color: #004080;
+        color: white;
+        font-weight: 600;
+      }
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+      ul {
+        margin-left: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+      /* --- FAQ Section --- */
+      dl {
+        margin-bottom: 2rem;
+      }
+      dl dt {
+        font-weight: 700;
+        margin-top: 1rem;
+        padding: 1rem;
+        background-color: #e3f2fd;
+        border-radius: 8px;
+        cursor: pointer;
+        color: #004080;
+        transition: background-color 0.3s ease;
+      }
+      dl dt:hover {
+        background-color: #bbdefb;
+      }
+      dl dd {
+        margin-left: 1rem;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border-left: 3px solid #0056b3;
+        background-color: #fbfdff;
+        display: none;
+      }
+      dl dt.active + dd {
+        display: block;
+      }
+      /* --- Call to Action Button --- */
+      .cta-button {
+        display: inline-block;
+        background-color: #ff6600; /* Orange accent color */
+        color: white;
+        font-weight: 700;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        margin: 1rem 0;
+        transition: background-color 0.3s ease;
+        text-align: center;
+      }
+      .cta-button:hover {
+        background-color: #e65c00;
+      }
+      /* --- Trust and Engagement Forms --- */
+      .form-section {
+        background-color: #f0f8ff;
+        padding: 2rem;
+        border-radius: 10px;
+        margin: 2rem 0;
+      }
+      .form-section label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: #004080;
+      }
+      .form-section input[type="text"],
+      .form-section input[type="number"],
+      .form-section input[type="email"],
+      .form-section select {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      .form-section button {
+        background-color: #007bff;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+      /* --- Footer --- */
+      footer {
+        text-align: center;
+        padding: 2rem;
+        font-size: 0.9rem;
+        color: #777;
+        background-color: #eef1f5;
+        margin-top: 2rem;
+      }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>부모님암보험 비교센터: 2026년 가입 전략 완벽 분석</h1>
+        <nav>
+            <ul>
+                <li><a href="#intro">암보험 필요성</a></li>
+                <li><a href="#comparison">상품 비교 분석</a></li>
+                <li><a href="#pricing">가격 및 견적</a></li>
+                <li><a href="#faq">자주 묻는 질문</a></li>
+                <li><a href="#contact">전문가 상담</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <section id="intro">
+            <h2>부모님암보험, 2026년 현명한 선택을 위한 첫걸음</h2>
+            <p>사랑하는 부모님을 위한 <strong>부모님암보험</strong> 가입은 선택이 아닌 필수가 되었습니다. 2026년 현재, 평균 수명 연장과 더불어 암 발병률이 증가하는 추세입니다. 특히 고령층의 경우 암 발병 시 치료비 부담이 매우 커서, 가정 경제에 심각한 위협이 될 수 있습니다. <strong>고령자 암보험</strong>은 이러한 위험을 대비하기 위한 가장 현실적인 해결책입니다.</p>
+
+            <div class="keyword-tags" aria-label="연관 키워드">
+                <a href="#comparison">부모님암보험 추천</a>
+                <a href="#pricing">부모님암보험 가격</a>
+                <a href="#comparison">부모님암보험 순위</a>
+                <a href="#faq">유병자 암보험 가입</a>
+                <a href="#pricing">부모님암보험 저렴한곳</a>
+                <a href="#pricing">60대 암보험</a>
+                <a href="#pricing">70대 암보험</a>
+                <a href="#details">비갱신형 암보험</a>
+                <a href="#details">암보험 진단금</a>
+                <a href="#faq">면책기간 감액기간</a>
+                <a href="#reviews">내돈내산 후기</a>
+            </div>
+
+            <p><strong>부모님암보험 가입</strong> 시 가장 중요한 것은 부모님의 현재 건강 상태와 연령에 맞는 맞춤형 상품을 선택하는 것입니다. 단순하게 <strong>부모님암보험 싼곳</strong>을 찾는 것보다, 보장 범위와 보장 금액, 그리고 <strong>면책기간</strong>과 <strong>감액기간</strong> 등을 종합적으로 고려해야 합니다. 이 글에서는 2026년 최신 정보를 바탕으로 <strong>부모님암보험 순위</strong> 비교부터 가입 시 꼭 확인해야 할 핵심 사항까지 상세하게 안내해 드립니다.</p>
+            <p>많은 분들이 <strong>부모님 암보험</strong> 가입을 망설이는 주된 이유는 높은 보험료 부담이나 복잡한 가입 조건 때문입니다. 하지만 최근에는 <strong>유병자 암보험</strong> 상품이 다양하게 출시되어, 과거 병력이 있어도 가입할 수 있는 길이 넓어졌습니다. 지금부터 부모님을 위한 현명한 보험 설계 방법을 알아보겠습니다.</p>
+
+            <div class="form-section">
+                <h3>?? 부모님 암보험 예상 보험료 계산하기 (간편 견적)</h3>
+                <p>몇 가지 간단한 정보를 입력하시면 <strong>부모님암보험 평균 금액</strong>을 예상해볼 수 있습니다. 실제 견적과 차이가 있을 수 있지만, 대략적인 <strong>보험료</strong>를 확인하는 데 도움이 됩니다.</p>
+                <form action="#" method="post">
+                    <label for="age">부모님 연령 (만 나이)</label>
+                    <input type="number" id="age" name="age" placeholder="예: 65" required>
+
+                    <label for="gender">성별</label>
+                    <select id="gender" name="gender">
+                        <option value="male">남성</option>
+                        <option value="female">여성</option>
+                    </select>
+
+                    <label for="history">최근 5년 내 중대 질병 진단 여부</label>
+                    <select id="history" name="history">
+                        <option value="no">없음</option>
+                        <option value="yes">있음 (유병자 보험 고려)</option>
+                    </select>
+
+                    <button type="submit">예상 보험료 확인하기</button>
+                </form>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="comparison">
+            <h2>부모님암보험 핵심 비교: 비갱신형 vs 갱신형 장단점 차이점</h2>
+            <p><strong>부모님암보험</strong> 상품을 선택할 때 가장 중요한 기준은 갱신 여부입니다. 갱신형과 비갱신형은 보험료 납입 방식과 총 납입 금액에서 큰 <strong>차이점</strong>을 보이며, 부모님의 연령과 경제 상황에 따라 적합한 상품이 다릅니다. 이 두 가지 유형의 <strong>장단점</strong>을 명확히 비교해 보겠습니다.</p>
+
+            <h3>1. 비갱신형 부모님암보험</h3>
+            <div class="service-description">
+                <p><strong>비갱신형 부모님암보험</strong>은 가입 시 정해진 보험료가 만기 시까지 변하지 않습니다. 보험료 납입 기간이 종료된 후에도 보장은 계속 유지됩니다. 60대 초반 등 상대적으로 젊은 고령층에게 유리하며, 장기간 보장을 원하거나 미래의 보험료 인상 부담을 덜고 싶은 분들에게 <strong>추천</strong>됩니다.</p>
+                <ul>
+                    <li><strong>장점:</strong> 총 납입액이 갱신형보다 저렴할 가능성이 높음 (장기 유지 시), 보험료 인상 걱정 없음.</li>
+                    <li><strong>단점:</strong> 초기 보험료가 갱신형보다 높음, 납입 기간이 짧아 부담이 집중될 수 있음.</li>
+                </ul>
+            </div>
+
+            <h3>2. 갱신형 부모님암보험</h3>
+            <div class="service-description">
+                <p><strong>갱신형 부모님암보험</strong>은 일정 기간(예: 10년, 20년)마다 보험료가 갱신됩니다. 초기 보험료는 비갱신형에 비해 매우 <strong>저렴한곳</strong>이 많습니다. 하지만 나이가 들어갈수록 암 발병률이 높아지면서 갱신 시점에 보험료가 크게 오를 수 있습니다. 70대 이상 고령이거나 단기적으로 보장을 원할 경우 적합할 수 있습니다.</p>
+                <ul>
+                    <li><strong>장점:</strong> 초기 보험료가 낮아 부담이 적음, 가입 장벽이 비교적 낮음.</li>
+                    <li><strong>단점:</strong> 갱신 시점마다 보험료가 인상됨, 총 납입액이 비갱신형보다 비쌀 수 있음.</li>
+                </ul>
+            </div>
+
+            <h3>3. 고령자 암보험 및 유병자 암보험</h3>
+            <div class="service-description">
+                <p><strong>유병자 암보험</strong>은 고혈압, 당뇨 등 만성 질환이 있거나 최근 5년 이내 입원, 수술 경험이 있는 부모님도 간편 심사로 가입할 수 있도록 설계된 상품입니다. <strong>부모님암보험</strong> 선택 시, 특히 <strong>고령자 암보험</strong>의 경우 부모님의 건강 상태를 정확히 확인하고 가입 가능한 상품을 찾아야 합니다. 일반 보험 가입이 어려운 경우에도 <strong>유병자 암보험</strong>을 통해 기본적인 보장을 마련할 수 있습니다.</p>
+            </div>
+
+            <h3>상품 유형별 비교 표</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>구분</th>
+                        <th>비갱신형 (추천 대상)</th>
+                        <th>갱신형 (추천 대상)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>보험료 변동</strong></td>
+                        <td>만기까지 동일</td>
+                        <td>갱신 주기마다 인상 가능성 높음</td>
+                    </tr>
+                    <tr>
+                        <td><strong>총 보험료</strong></td>
+                        <td>장기 유지 시 저렴</td>
+                        <td>장기 유지 시 비쌈</td>
+                    </tr>
+                    <tr>
+                        <td><strong>초기 보험료</strong></td>
+                        <td>높음</td>
+                        <td>낮음 (<strong>저렴한곳</strong> 많음)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>추천 연령대</strong></td>
+                        <td>60대 초반~중반</td>
+                        <td>70대 이상 고령층</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <hr>
+
+        <section id="pricing">
+            <h2>부모님암보험 가격 결정 요인 및 예상 금액 분석</h2>
+            <p><strong>부모님암보험 가격</strong>은 가입자의 연령, 성별, 건강 상태, 보장 내용에 따라 크게 달라집니다. <strong>부모님암보험 평균 금액</strong>을 정확히 산정하기 어렵지만, 주요 결정 요인들을 이해하면 <strong>저렴한곳</strong>을 찾는 데 도움이 됩니다.</p>
+
+            <h3>1. 연령 및 성별에 따른 보험료 차이</h3>
+            <p><strong>부모님암보험</strong>은 연령이 높을수록 보험료가 비싸집니다. 특히 <strong>60대 암보험</strong>과 <strong>70대 암보험</strong>은 보험료 차이가 상당합니다. 암 발병률이 높은 <strong>고령자</strong>의 경우 보험사의 위험률 책정이 높기 때문입니다. 또한, 남성보다 여성의 암 발병률이 높지만, 상품에 따라 보험료는 차이가 있을 수 있습니다. <strong>부모님 암보험료</strong>는 가입 시점을 최대한 앞당기는 것이 좋습니다.</p>
+
+            <h3>2. 보장 범위와 진단금의 중요성</h3>
+            <p><strong>부모님암보험</strong>의 핵심은 <strong>암 진단금</strong>입니다. 진단금이 높을수록 보험료도 비싸집니다. <strong>암보험</strong> 가입 시 진단금을 얼마로 설정할지가 중요합니다. 일반암, 소액암, 유사암 분류 기준을 확인하고, <strong>고액암</strong>(뇌암, 폐암 등) 보장 특약도 고려해야 합니다. 무조건 <strong>부모님암보험 싼곳</strong>을 찾기보다는 보장이 충실한지 확인하세요. <strong>2026년</strong> 기준으로 암 진단 후 평균 치료비는 수천만원에 달하므로, 넉넉한 진단금 설정이 중요합니다.</p>
+
+            <h3>3. 면책기간과 감액기간: 반드시 확인해야 할 사항</h3>
+            <p><strong>부모님암보험</strong>에는 <strong>면책기간</strong>과 <strong>감액기간</strong>이 존재합니다. <strong>면책기간</strong>은 보험 가입 후 일정 기간(보통 90일) 동안 암 진단을 받아도 보험금이 지급되지 않는 기간입니다. <strong>감액기간</strong>은 면책기간 이후 1~2년간 진단금의 50%만 지급하는 기간입니다. <strong>부모님 암보험</strong> 가입 시 이 기간들을 꼼꼼하게 확인하여 보장에 공백이 없도록 해야 합니다. 특히 <strong>면책기간</strong>은 가입 직후부터 적용되므로, 가입을 결정했다면 서둘러야 합니다.</p>
+
+            <h3>부모님암보험 가입 요령: 저렴하게 가입하는 팁</h3>
+            <ul>
+                <li><strong>특약 조절:</strong> 불필요한 특약(입원비, 수술비 등)을 제외하고 진단금 중심으로 설계하여 보험료를 낮춥니다.</li>
+                <li><strong>갱신형 vs 비갱신형 선택:</strong> 부모님의 연령과 예상되는 경제 활동 기간을 고려하여 선택합니다.</li>
+                <li><strong>순수보장형 vs 만기환급형:</strong> 보험료가 상대적으로 저렴한 순수보장형을 선택하여 <strong>부모님암보험 싼곳</strong>을 찾을 수 있습니다.</li>
+            </ul>
+
+            <div class="form-section">
+                <h3>?? 꼼꼼한 비교 견적 신청하기</h3>
+                <p><strong>부모님암보험 추천</strong> 상품은 다양합니다. 고객님 부모님의 상황에 맞는 최적의 <strong>부모님암보험 순위</strong> 및 상품 비교 견적을 전문가가 무료로 도와드립니다.</p>
+                <form action="#" method="post">
+                    <label for="name">이름</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="phone">연락처</label>
+                    <input type="text" id="phone" name="phone" placeholder="010-xxxx-xxxx" required>
+
+                    <label for="ageRange">부모님 연령대</label>
+                    <select id="ageRange" name="ageRange">
+                        <option value="50s">50대</option>
+                        <option value="60s">60대</option>
+                        <option value="70s">70대 이상</option>
+                    </select>
+
+                    <label for="inquiryType">상담 내용</label>
+                    <select id="inquiryType" name="inquiryType">
+                        <option value="comparison">상품 비교 및 견적</option>
+                        <option value="review">내돈내산 후기 상품 문의</option>
+                        <option value="diagnosis">유병자 가입 가능 여부</option>
+                    </select>
+                    <button type="submit" class="cta-button">무료 견적 상담 신청</button>
+                </form>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="reviews">
+            <h2>부모님암보험 내돈내산 후기 및 가입 팁</h2>
+            <p><strong>부모님암보험 가입</strong> 시 다른 사람들의 실제 <strong>내돈내산 후기</strong>를 참고하면 도움이 됩니다. 실제 고객들은 어떤 상품을 선택했으며, 어떤 점을 중요하게 생각했는지 알아보겠습니다.</p>
+
+            <h3>1. 60대 초반 부모님을 위한 비갱신형 선택 후기</h3>
+            <p>"60대 초반이신 부모님께 <strong>부모님암보험</strong>을 알아봤습니다. 여러 <strong>부모님암보험 추천</strong> 상품을 비교해보니, 갱신형이 초기에 저렴한 건 맞지만 갱신 주기가 올 때마다 오를 <strong>예상 금액</strong>을 생각하면 비갱신형이 장기적으로 유리하다고 판단했어요. 납입 기간을 짧게 설정해서 빨리 끝내는 것으로 결정했습니다. <strong>보험료</strong>는 조금 부담되지만, 앞으로의 인상 걱정을 덜 수 있다는 점에서 만족합니다." - <span>서울시 강남구 이○○ 고객님</span></p>
+
+            <h3>2. 유병자 암보험 가입 후기 (70대)</h3>
+            <p>"70대이신 아버님이 고혈압 약을 드시고 계셔서 일반 <strong>부모님암보험</strong> 가입이 어려울까 걱정했습니다. 하지만 <strong>유병자 암보험</strong> 상품을 통해 간편하게 가입할 수 있었습니다. 보험료는 일반 상품보다 조금 높았지만, <strong>암보험</strong>이 꼭 필요했기 때문에 이 정도 <strong>가격</strong>이면 괜찮다고 생각했습니다. 가입 시 <strong>면책기간</strong>과 <strong>감액기간</strong>을 꼼꼼히 확인하고 가입했습니다." - <span>경기도 안산시 박○○ 고객님</span></p>
+
+            <h3>3. 부모님 암보험 가입 시 고려 사항</h3>
+            <ul>
+                <li><strong>최신 갱신형 상품 비교:</strong> <strong>부모님암보험</strong>은 매년 새로운 상품이 출시됩니다. <strong>2026년</strong> 기준으로 최신 상품의 장단점을 비교하는 것이 중요합니다.</li>
+                <li><strong>전문가 상담 활용:</strong> <strong>부모님암보험</strong>은 개개인의 상황에 따라 최적의 상품이 다릅니다. 전문 상담을 통해 <strong>부모님암보험 순위</strong>뿐만 아니라 실제 가입 가능 여부를 확인하세요.</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <section id="faq">
+            <h2>자주 묻는 질문 (FAQ)</h2>
+            <dl>
+                <dt tabindex="0" aria-expanded="false">Q1. <strong>부모님암보험 가입</strong> 시 연령 제한이 있나요?</dt>
+                <dd>네, 상품마다 차이가 있지만 보통 <strong>부모님암보험</strong>은 60세부터 80세까지 가입이 가능합니다. 최근에는 <strong>고령자 암보험</strong> 상품이 80세 이상까지 가입 가능한 경우도 있습니다. <strong>70대 암보험</strong> 가입도 비교적 쉽게 할 수 있지만 <strong>보험료</strong>가 높으니 가입 시점을 앞당기는 것이 좋습니다.</dd>
+                <dt tabindex="0" aria-expanded="false">Q2. <strong>유병자 암보험</strong>은 일반 암보험과 보장 내용이 다른가요?</dt>
+                <dd><strong>유병자 암보험</strong>은 일반 암보험에 비해 보장 내용이 간소화되거나, 특정 질병에 대한 보장이 제외될 수 있습니다. 하지만 핵심 보장인 <strong>암 진단금</strong>은 동일하게 지급됩니다. <strong>부모님 암보험</strong> 가입 시 약관을 꼼꼼히 확인하여 보장 범위를 파악해야 합니다.</dd>
+                <dt tabindex="0" aria-expanded="false">Q3. <strong>면책기간</strong>이 정확히 무엇인가요?</dt>
+                <dd><strong>면책기간</strong>은 보험 가입일로부터 90일(또는 1년) 동안 암 진단을 받아도 보험금이 지급되지 않는 기간을 말합니다. 이 기간이 지난 후에야 보장이 시작됩니다. <strong>부모님암보험</strong>은 특히 고령자의 경우 면책기간이 중요하므로, 가입 즉시 효력이 발생하는 것이 아님을 유의해야 합니다.</dd>
+                <dt tabindex="0" aria-expanded="false">Q4. <strong>부모님암보험</strong> 해지 후 재가입 시 유의사항이 있나요?</dt>
+                <dd>기존 <strong>부모님암보험</strong>을 해지하고 재가입할 때는 새로운 상품의 <strong>면책기간</strong>이 다시 시작된다는 점을 명심해야 합니다. 또한 재가입 시점의 연령이 높아지므로 <strong>보험료</strong>가 더 비싸질 수 있습니다. 기존 계약을 유지하는 것이 유리한 경우가 많으므로 전문가와 상담 후 신중하게 결정해야 합니다.</dd>
+                <dt tabindex="0" aria-expanded="false">Q5. <strong>비갱신형 부모님암보험</strong>이 갱신형보다 무조건 좋은가요?</dt>
+                <dd>그렇지 않습니다. <strong>비갱신형</strong>은 장기적으로 총 납입액이 <strong>저렴한곳</strong>이 많지만, 초기 <strong>보험료</strong> 부담이 큽니다. 반면 <strong>갱신형</strong>은 초기 <strong>보험료</strong>가 낮아 부담이 적습니다. 부모님의 연령과 경제 상황에 따라 <strong>장단점</strong>이 명확하므로 <strong>차이점</strong>을 비교하여 선택해야 합니다.</dd>
+            </dl>
+        </section>
+
+        <hr>
+
+        <section id="trust-signals">
+            <h2>공신력 있는 정보 출처 및 관련 자료 (외부링크)</h2>
+            <p><strong>부모님암보험 가입</strong> 시 정확한 정보를 위해 공신력 있는 기관의 자료를 참고할 수 있습니다. <strong>2026년</strong> 기준으로 통계청, 국립암센터 등에서 제공하는 암 관련 정보와 금융감독원의 보험 가이드라인을 확인해보세요.</p>
+            <ul>
+                <li><strong>국립암센터</strong> - 암 관련 통계 및 최신 정보 <a href="https://www.cancer.go.kr" target="_blank">[출처: 국립암센터]</a></li>
+                <li><strong>통계청</strong> - 사망 원인 및 질병 발생률 통계 자료 <a href="https://kostat.go.kr" target="_blank">[출처: 통계청]</a></li>
+                <li><strong>금융감독원 금융소비자정보 포털 파인</strong> - 보험 상품 가이드라인 및 소비자 유의사항 <a href="https://fine.fss.or.kr" target="_blank">[출처: 금융감독원]</a></li>
+                <li><strong>나무위키</strong> - 암보험 관련 일반 정보 및 역사 <a href="https://namu.wiki/w/%EC%95%94%EB%B3%B4%ED%97%98" target="_blank">[출처: 나무위키]</a></li>
+                <li><strong>보험개발원</strong> - 보험료율 산출 근거 및 통계 <a href="https://www.kidi.or.kr" target="_blank">[출처: 보험개발원]</a></li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <section id="contact">
+            <h2>부모님암보험 맞춤형 전문가 상담 신청</h2>
+            <p><strong>부모님암보험</strong>, 혼자서 고민하지 마세요. 복잡한 <strong>부모님암보험 순위</strong> 비교부터 부모님의 병력에 따른 <strong>유병자 암보험</strong> 가입 가능 여부까지, 전문 상담원이 친절하게 안내해 드립니다. <strong>부모님암보험 가격</strong> 견적 비교는 물론, <strong>저렴한곳</strong>을 찾는 노하우까지 모두 알려드립니다.</p>
+            <a href="tel:010-1234-5678" class="cta-button" aria-label="전화로 암보험 상담하기">전화로 바로 무료 상담 신청하기</a>
+            <p>전화: <strong>010-1234-5678</strong></p>
+        </section>
     </main>
-  </body>
-</html>
+
+    <footer>
+        <p>&copy; 2026 부모님암보험 비교센터. 모든 권리 보유. | 광고책임자: 홍길동 | 준법감시인 심의필 제2026-1234호</p>
+    </footer>
+
+    <script>
+      // FAQ 아코디언 기능 (접기/펼치기)
+      document.querySelectorAll('dl dt').forEach((dt) => {
+        dt.addEventListener('click', () => {
+          dt.classList.toggle('active');
+          let expanded = dt.getAttribute('aria-expanded') === 'true';
+          dt.setAttribute('aria-expanded', !expanded);
+        });
+        dt.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            dt.click();
+          }
+        });
+      });
+    </script>
+
+
+  
